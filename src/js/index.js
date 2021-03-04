@@ -1,6 +1,6 @@
 import "../style/index.scss";
 
-/**
+/*
  *  EDIT ONLY INSIDE THIS RENDER FUNCTION
  *  This function is called every time the user changes types or changes any input
  * 
@@ -21,7 +21,8 @@ import "../style/index.scss";
         country: null,
         city: null
     }
- */
+*/
+
 function render(variables = {}) {
   console.log("These are the current variables: ", variables); //print on the console
   // here we ask the logical questions to make decisions on how to build the html
@@ -33,14 +34,30 @@ function render(variables = {}) {
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
           <img src="${variables.avatarURL}" class="photo" />
-          <h1>Lucy Boilett</h1>
-          <h2>Web Developer</h2>
-          <h3>Miami, USA</h3>
-          <ul class="position-right">
-            <li><a href="https://twitter.com/alesanchezr"><i class="fa fa-twitter"></i></a></li>
-            <li><a href="https://github.com/alesanchezr"><i class="fa fa-github"></i></a></li>
-            <li><a href="https://linkedin.com/alesanchezr"><i class="fa fa-linkedin"></i></a></li>
-            <li><a href="https://instagram.com/alesanchezr"><i class="fa fa-instagram"></i></a></li>
+          <h1>${variables.name == null ? "Nombre" : variables.name} ${
+    variables.lastname == null ? "Apellido" : variables.lastname
+  }</h1>
+          <h2> ${variables.role == null ? "Profesión" : variables.role} </h2>
+          <h3> ${variables.city == null ? "Ciudad" : variables.city}, ${
+    variables.country == null ? "País" : variables.country
+  } </h3>
+          <ul class=${
+            variables.socialMediaPosition == null
+              ? delete variables.socialMediaPosition
+              : variables.socialMediaPosition
+          }>
+            <li><a target="_blank" href="https://twitter.com/${
+              variables.twitter == null ? "alesanchezr" : variables.twitter
+            }"><i class="fa fa-twitter"></i></a></li>
+            <li><a target="_blank" href="https://github.com/${
+              variables.github == null ? "sometimespipe" : variables.github
+            }"><i class="fa fa-github"></i></a></li>
+            <li><a target="_blank" href="https://linkedin.com/${
+              variables.linkedin == null ? "alesanchezr" : variables.linkedin
+            }"><i class="fa fa-linkedin"></i></a></li>
+            <li><a target="_blank" href="https://instagram.com/${
+              variables.instagram == null ? "alesanchezr" : variables.instagram
+            }"><i class="fa fa-instagram"></i></a></li>
           </ul>
         </div>
     `;
@@ -58,10 +75,10 @@ window.onload = function() {
     // this is the url for the profile avatar
     avatarURL: "https://randomuser.me/api/portraits/women/42.jpg",
     // social media bar position (left or right)
-    socialMediaPosition: "position-left",
+    socialMediaPosition: null,
     // social media usernames
     twitter: null,
-    github: "alesanchezr",
+    github: null,
     linkedin: null,
     instagram: null,
     name: null,
